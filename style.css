@@ -462,6 +462,14 @@ h2{
   text-align:right;
   color:var(--blue);
 }
+.signature-link{
+  display:block;
+  margin-top:4px;
+  font-size:13px;
+  text-align:right;
+  color:#999;
+  text-decoration:underline;
+}
 
 /* footer */
 footer{
