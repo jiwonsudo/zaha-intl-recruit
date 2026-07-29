@@ -66,4 +66,15 @@
       animate();
     }
   }
+
+  const noticeBar = document.getElementById('noticeBar');
+  const noticeClose = document.getElementById('noticeClose');
+  if(noticeBar){
+    setTimeout(function(){ noticeBar.classList.add('show'); }, 400);
+    if(noticeClose){
+      noticeClose.addEventListener('click', function(){
+        noticeBar.classList.remove('show');
+      });
+    }
+  }
 })();
