@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>(주) 자하인터내셔널 신입사원 채용공고</title>
 <meta name="description" content="AI와 함께, 빠르게 성장하려면">
 
@@ -23,7 +23,7 @@
   <div class="wrap">
     <a class="brand" href="#top">
       <img src="zaha_intl_logo.webp" alt="자하인터내셔널 로고">
-      <span>자하인터내셔널 채용</span>
+      <span>자하인터내셔널 · 채용</span>
     </a>
     <a class="btn" href="#apply">지원하기</a>
   </div>
@@ -218,8 +218,7 @@
         </ul>
       </div>
       <div class="apply-cta fade">
-        <!-- TODO: 구글폼 링크로 교체 -->
-        <a class="btn btn-lg" href="#" target="_blank" rel="noopener">지원서 작성하기</a>
+        <button type="button" class="btn btn-lg" id="applyOpenBtn">지원서 작성하기</button>
       </div>
     </div>
   </section>
@@ -260,6 +259,67 @@
   <div class="wrap notice-inner">
     <p>아직 지원 기간 전이라 <b>지원서 접수가 열리지 않았어요.</b> 페이지의 일정은 예정안이며, <b>추후 변경될 수 있어요.</b></p>
     <button type="button" class="notice-close" id="noticeClose">확인</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="applyModalOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="applyModalTitle">
+    <button type="button" class="modal-close" id="applyModalClose" aria-label="닫기">&times;</button>
+
+    <div id="applyClosedWrap" hidden>
+      <h3>아직 지원 기간이 아니에요</h3>
+      <p class="modal-sub">지원서 접수는 추후에 열려요. 접수가 시작되면 다시 눌러주세요!</p>
+      <button type="button" class="btn btn-lg" id="applyClosedCloseBtn">확인</button>
+    </div>
+
+    <div id="applyFormWrap">
+      <h3 id="applyModalTitle">자하인터내셔널 지원서</h3>
+      <p class="modal-sub">작은 경험도 괜찮으니 정직하게만 적어주세요. 아이템 등 이야기를 적는 부분은 확정된 내용이 아니어도 괜찮아요.</p>
+      <form id="applyForm" action="https://formspree.io/f/mrendqkd" method="POST">
+        <div class="form-row">
+          <label for="f-name">이름</label>
+          <input type="text" id="f-name" name="이름" required>
+        </div>
+        <div class="form-row">
+          <label for="f-contact">전화번호</label>
+          <input type="tel" id="f-contact" name="전화번호" placeholder="01012345678" pattern="01[016789]-?\d{3,4}-?\d{4}" title="'01012345678' 형식으로 입력해주세요" required>
+          <p class="form-hint" id="f-contact-hint" hidden>전화번호 형식을 확인해주세요. 예) 01012345678</p>
+        </div>
+        <div class="form-row">
+          <label for="f-dept">학과</label>
+          <input type="text" id="f-dept" name="학과">
+        </div>
+        <div class="form-row">
+          <label for="f-studentid">학번</label>
+          <input type="text" id="f-studentid" name="학번">
+        </div>
+        <div class="form-row">
+          <label for="f-idea">만들고 싶은 아이템 <span class="char-count" data-count-for="f-idea">0/300</span></label>
+          <textarea id="f-idea" name="만들고_싶은_아이템" rows="3" maxlength="300" required placeholder="예: 시험기간 도서관 자리 현황을 알려주는 앱"></textarea>
+        </div>
+        <div class="form-row">
+          <label for="f-experience">완주해본 경험 (있다면) <span class="char-count" data-count-for="f-experience">0/300</span></label>
+          <textarea id="f-experience" name="완주_경험" rows="3" maxlength="300" placeholder="결과물 링크나 간단한 설명을 적어주세요"></textarea>
+          <p class="form-hint">작은 경험이어도 충분해요. 있는 그대로 편하게 적어주세요 :)</p>
+        </div>
+        <div class="form-row">
+          <label for="f-motivation">포부 / 자신의 이야기 <span class="char-count" data-count-for="f-motivation">0/300</span></label>
+          <textarea id="f-motivation" name="포부" rows="4" maxlength="300" required></textarea>
+        </div>
+        <label class="form-check">
+          <input type="checkbox" id="f-confirm" name="사실확인" required>
+          위 내용이 모두 사실임을 확인합니다.
+        </label>
+        <p class="form-error" id="applyFormError" hidden>제출 중 문제가 발생했어요. 잠시 후 다시 시도해주세요.</p>
+        <button type="submit" class="btn btn-lg form-submit" id="applySubmitBtn" disabled>제출하기</button>
+      </form>
+    </div>
+
+    <div id="applySuccessWrap" hidden>
+      <h3>제출이 완료됐어요!</h3>
+      <p class="modal-sub">지원해주셔서 감사해요. 검토 후 결과와 관계없이 개별 연락드릴게요.</p>
+      <button type="button" class="btn btn-lg" id="applySuccessCloseBtn">닫기</button>
+    </div>
   </div>
 </div>
 
